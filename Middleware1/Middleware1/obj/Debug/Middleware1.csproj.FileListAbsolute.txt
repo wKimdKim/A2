@@ -7,3 +7,4 @@ D:\Sandbox\711A2\Middleware1\Middleware1\obj\Debug\Middleware1.exe
 D:\Sandbox\711A2\Middleware1\Middleware1\obj\Debug\Middleware1.pdb
 D:\Sandbox\711A2\Middleware1\Middleware1\obj\Debug\Middleware1.Program.resources
 D:\Sandbox\711A2\Middleware1\Middleware1\obj\Debug\Middleware1.csproj.GenerateResource.cache
+D:\Sandbox\711A2\Middleware1\Middleware1\obj\Debug\Middleware1.Form1.resources

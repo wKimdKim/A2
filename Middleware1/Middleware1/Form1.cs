@@ -9,12 +9,12 @@ namespace Middleware1
 {
     public class Form1:Form
     {
-        public delegate void setReceivedMessageCb(string data);
+        
         public Button button1;
         public ListBox listBox1;
         public ListBox listBox2;
-        private BackgroundWorker backgroundWorker1;
         public ListBox listBox3;
+        public static Program m;
 
         public Form1()
         {
@@ -26,7 +26,6 @@ namespace Middleware1
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.listBox3 = new System.Windows.Forms.ListBox();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // button1
@@ -37,34 +36,35 @@ namespace Middleware1
             this.button1.TabIndex = 0;
             this.button1.Text = "Send";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(12, 75);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(157, 225);
+            this.listBox1.Size = new System.Drawing.Size(256, 485);
             this.listBox1.TabIndex = 1;
             // 
             // listBox2
             // 
             this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(197, 75);
+            this.listBox2.Location = new System.Drawing.Point(318, 75);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(157, 225);
+            this.listBox2.Size = new System.Drawing.Size(309, 485);
             this.listBox2.TabIndex = 2;
             // 
             // listBox3
             // 
             this.listBox3.FormattingEnabled = true;
-            this.listBox3.Location = new System.Drawing.Point(381, 75);
+            this.listBox3.Location = new System.Drawing.Point(664, 75);
             this.listBox3.Name = "listBox3";
-            this.listBox3.Size = new System.Drawing.Size(157, 225);
+            this.listBox3.Size = new System.Drawing.Size(272, 485);
             this.listBox3.TabIndex = 3;
             // 
             // Form1
             // 
-            this.ClientSize = new System.Drawing.Size(550, 360);
+            this.ClientSize = new System.Drawing.Size(948, 616);
             this.Controls.Add(this.listBox3);
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.listBox1);
@@ -75,16 +75,28 @@ namespace Middleware1
 
         }
 
-
+        public void Add_ReceivedMessage(string data)
+        {
+            listBox2.Invoke(new Action(() => listBox2.Items.Add(data)));
+        }
+        public void Add_SentMessage(string msg)
+        {
+            listBox1.Invoke(new Action(() => listBox1.Items.Add(msg)));
+        }
         [STAThread]
         public static int Main(String[] args)
         {
-            Program m = new Program();
             Form1 myForm = new Form1();
+            m = new Program(myForm);
             Application.EnableVisualStyles();
             Task.Run(m.ReceiveMulticast).ConfigureAwait(false);
             Application.Run(myForm);
             return 0;
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            Task.Run(m.SendMessage).ConfigureAwait(false);
         }
     }
 }

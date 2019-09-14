@@ -11,6 +11,14 @@ namespace Middleware1
     public partial class Program
     {
         const int myPort = 8082;
+        private Form1 myForm;
+        string idProcess;
+        int logicalClock;
+
+        public Program(Form1 myForm)
+        {
+            this.myForm = myForm;
+        }
 
         // This method sets up a socket for receiving messages from the Network
         public async void ReceiveMulticast()
@@ -66,6 +74,8 @@ namespace Middleware1
                             break;
                         }
                     }
+
+                    this.myForm.Add_ReceivedMessage(data);
                     Console.WriteLine("msg received:    {0}", data);
                 }
 
@@ -78,13 +88,8 @@ namespace Middleware1
 
         // This method first sets up a task for receiving messages from the Network.
         // Then, it sends a multicast message to the Netwrok.
-        public async void DoWork()
+        public async void SendMessage()
         {
-            // Sets up a task for receiving messages from the Network.
-            ReceiveMulticast();
-
-            Console.WriteLine("Press ENTER to continue ...");
-            Console.ReadLine();
 
             // Send a multicast message to the Network
             try
@@ -111,7 +116,8 @@ namespace Middleware1
                     sendSocket.Connect(remoteEP);
 
                     // Generate and encode the multicast message into a byte array.
-                    byte[] msg = Encoding.ASCII.GetBytes("From " + myPort + ": This is a test<EOM>\n");
+                    string stringMsg = "From " + myPort + ": This is a test<EOM>\n";
+                    byte[] msg = Encoding.ASCII.GetBytes(stringMsg);
 
                     // Send the data to the network.
                     int bytesSent = sendSocket.Send(msg);
@@ -119,8 +125,7 @@ namespace Middleware1
                     sendSocket.Shutdown(SocketShutdown.Both);
                     sendSocket.Close();
 
-                    Console.WriteLine("Press ENTER to terminate ...");
-                    Console.ReadLine();
+                    this.myForm.Add_SentMessage(stringMsg);
                 }
                 catch (ArgumentNullException ane)
                 {

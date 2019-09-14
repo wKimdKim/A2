@@ -55,6 +55,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Program.resx">
       <DependentUpon>Program.cs</DependentUpon>
     </EmbeddedResource>

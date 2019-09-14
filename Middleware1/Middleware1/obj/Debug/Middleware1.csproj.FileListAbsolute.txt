@@ -1,0 +1,9 @@
+D:\Sandbox\711A2\Middleware1\Middleware1\obj\Debug\Middleware1.csprojAssemblyReference.cache
+D:\Sandbox\711A2\Middleware1\Middleware1\obj\Debug\Middleware1.csproj.CoreCompileInputs.cache
+D:\Sandbox\711A2\Middleware1\Middleware1\bin\Debug\Middleware1.exe.config
+D:\Sandbox\711A2\Middleware1\Middleware1\bin\Debug\Middleware1.exe
+D:\Sandbox\711A2\Middleware1\Middleware1\bin\Debug\Middleware1.pdb
+D:\Sandbox\711A2\Middleware1\Middleware1\obj\Debug\Middleware1.exe
+D:\Sandbox\711A2\Middleware1\Middleware1\obj\Debug\Middleware1.pdb
+D:\Sandbox\711A2\Middleware1\Middleware1\obj\Debug\Middleware1.Program.resources
+D:\Sandbox\711A2\Middleware1\Middleware1\obj\Debug\Middleware1.csproj.GenerateResource.cache

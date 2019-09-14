@@ -8,19 +8,12 @@ using System.ComponentModel;
 
 namespace Middleware1
 {
-    public partial class Program:Form
+    public partial class Program
     {
-        private Button button1;
-        private ListBox listBox1;
-        private ListBox listBox2;
-        private ListBox listBox3;
         const int myPort = 8082;
-        public Program()
-        {
-            InitializeComponent();
-        }
+
         // This method sets up a socket for receiving messages from the Network
-        private async void ReceiveMulticast()
+        public async void ReceiveMulticast()
         {
             // Data buffer for incoming data.
             byte[] bytes = new Byte[1024];
@@ -73,7 +66,6 @@ namespace Middleware1
                             break;
                         }
                     }
-                    listBox1.Items.Add(data);
                     Console.WriteLine("msg received:    {0}", data);
                 }
 
@@ -148,80 +140,6 @@ namespace Middleware1
             {
                 Console.WriteLine(e.ToString());
             }
-        }
-
-        [STAThread]
-        public static int Main(String[] args)
-        {
-            Program m = new Program();
-            Application.EnableVisualStyles();
-            Application.Run(m);
-            return 0;
-        }
-
-        private void InitializeComponent()
-        {
-            this.button1 = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.listBox2 = new System.Windows.Forms.ListBox();
-            this.listBox3 = new System.Windows.Forms.ListBox();
-            this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(12, 30);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Send";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 75);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(157, 225);
-            this.listBox1.TabIndex = 1;
-            // 
-            // listBox2
-            // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(197, 75);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(157, 225);
-            this.listBox2.TabIndex = 2;
-            // 
-            // listBox3
-            // 
-            this.listBox3.FormattingEnabled = true;
-            this.listBox3.Location = new System.Drawing.Point(381, 75);
-            this.listBox3.Name = "listBox3";
-            this.listBox3.Size = new System.Drawing.Size(157, 225);
-            this.listBox3.TabIndex = 3;
-            // 
-            // Program
-            // 
-            this.ClientSize = new System.Drawing.Size(550, 360);
-            this.Controls.Add(this.listBox3);
-            this.Controls.Add(this.listBox2);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.button1);
-            this.Name = "Program";
-            this.Text = "Middleware1";
-            this.ResumeLayout(false);
-
-        }
-
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            DoWork();
-        }
-
-        private void Form1_Load(object sender, System.EventArgs e)
-        {
-            DoWork();
         }
     }
 }
